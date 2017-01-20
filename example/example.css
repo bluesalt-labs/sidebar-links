@@ -5,6 +5,7 @@ html, body {
     top: 0; right: 0; bottom: 0; left: 0;
     margin:0;
     padding: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 pre {
@@ -14,6 +15,8 @@ pre {
     color: #fff;
     font-size: 1.1em;
 }
+
+code, pre { font-family: Menlo, Monaco, Consolas, "Courier New", monospace; }
 
 #page-container {
     position: relative;
@@ -26,9 +29,9 @@ pre {
 #main-sidebar > #sidebar-links,
 #main-sidebar > #sidebar-links li { list-style: none; }
 
-#main-sidebar ul {
-    margin-left: -20px;
-}
+#main-sidebar ul { margin-left: -20px; }
+
+#main-sidebar li > a { text-decoration: none; }
 
 #page-content,
 #main-sidebar {
