@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/example/example.css" />
+    <script type="text/javascript" src="../sidebar-links.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            // Call sidebarLinks with:
+            //   * the ul id name
+            //   * the header element class name
+            //   * the max nesting depth. Since there are only <h1> to <h6> tags, this can't be more than 6.
+            // The values called below are the defaults.
+            sidebarLinks('sidebar-links', 'sidebar-link', 6);
+        });
+    </script>
+
+    <title>Sidebar Links Example</title>
+</head>
+<body>
+<div id="page-container">
+    <div id="page-content">
+        <h1 class="sidebar-link" id="intro">Introduction</h1>
+        <p>
+            This is the example page for sidebar-links. It will take <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code>
+            tags with a specified class (like the title of this section) and create <code>&lt;li&gt;</code> items
+            (and nested <code>&lt;ul&gt;</code> items) in the specified <code>&lt;ul&gt;</code> element. The sidebar
+            on the right was generated sidebar-links.js.
+        </p>
+        <h2 id="not-in-sidebar">Excluding Headers</h2>
+        <p>
+            If a header should not be included in the list, don't add the specified class name to it. Notice the header
+            for this section is not included in the sidebar.
+        </p>
+
+        <hr />
+
+        <h1 class="sidebar-link" id="example">Example</h1>
+        <pre>
+            <code>
+&lt;script type="text/javascript"&gt;
+    document.addEventListener("DOMContentLoaded", function() {
+        // Call sidebarLinks with:
+        //   * the ul id name
+        //   * the header element class name
+        //   * the max nesting depth. Since there are only &lt;h1&gt; to &lt;h6&gt; tags, this can't be more than 6.
+        // The values called below are the defaults.
+        sidebarLinks('sidebar-links', 'sidebar-link', 6);
+    });
+&lt;/script&gt;
+            </code>
+        </pre>
+
+        <hr />
+
+        <h1 class="sidebar-link" id="nesting">Nesting</h1>
+        <p>
+            Sub-headers will be nested
+        </p>
+        <h2 class="sidebar-link" id="nesting-2">Nesting 2</h2>
+        <p>
+            under their parent
+        </p>
+        <h3 class="sidebar-link" id="nesting-3">Nesting 3</h3>
+        <p>
+            in the sidebar.
+        </p>
+        <h3 class="sidebar-link" id="nesting-3-1">Nesting 3.1</h3>
+        <p>
+            in the sidebar.
+        </p>
+        <h5 class="sidebar-link" id="nesting-5">Nesting 5</h5>
+        <p>
+            Going from &lt;h3&gt; to &lt;h5&gt; like in this example will double nest
+        </p>
+        <h5 class="sidebar-link" id="nesting-5-1">Nesting 5.1</h5>
+        <p>
+            in the sidebar as well.
+        </p>
+
+        <h3 class="sidebar-link" id="return-1">Return 1</h3>
+        <p>
+            Then return to the appropriate nesting level
+        </p>
+        <h3 class="sidebar-link" id="return-2">Return 2</h3>
+        <p>
+            in subsequent headers.
+        </p>
+
+        <hr />
+
+        <h1 class="sidebar-link" id="conclusion">Conclusion</h1>
+        <p>
+            This has been an example of sidebar-links.
+        </p>
+
+        <hr />
+
+    </div>
+    <nav id="main-sidebar">
+        <ul id="sidebar-links"></ul>
+    </nav>
+</div>
+</body>
+</html>
