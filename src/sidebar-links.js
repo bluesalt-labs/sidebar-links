@@ -1,10 +1,22 @@
 var sidebarLinks = function(baseUlID, headerLinkClass, maxDepth) {
     // Set Defaults
     this.baseUlID           = (typeof baseUlID !== 'undefined') ?  baseUlID : 'sidebar-links';
-    this.headerLinkClass    = (typeof headerLinkClass !== 'undefined') ?  headerLinkClass : 'sidebar-link';
+    this.headerLinkClass    = (typeof headerLinkClass !== 'undefined') ?  headerLinkClass : null;
     this.maxDepth           = (typeof maxDepth === 'number' && maxDepth > 1 && maxDepth <= 6) ? maxDepth : 6;
 
     this.init = function() {
+
+        if(this.headerLinkClass === null) {
+            this.headerLinkClass = 'sidebar-link';
+            for(var i = 1; i < (this.maxDepth + 1); i++){
+                var els = document.getElementsByTagName('h'+i);
+                for(var id in els) {
+                    if(els[id].className === '')    { els[id].className         = this.headerLinkClass; }
+                    else                            { els[id].className  += ' ' + this.headerLinkClass; }
+                }
+            }
+        }
+
         var regex = new RegExp('[H|h][1-' + this.maxDepth + ']', 'g');
         var linksUl = document.getElementById(this.baseUlID);
         var headers = document.getElementsByClassName(this.headerLinkClass);
