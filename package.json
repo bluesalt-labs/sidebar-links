@@ -1,6 +1,6 @@
 {
   "name": "sidebar-links",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Generates links as a UL element (with nesting) from header elements on page.",
   "main": "sidebar-links.js",
   "scripts": {
