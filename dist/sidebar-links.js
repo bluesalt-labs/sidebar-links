@@ -1,10 +1,22 @@
 var sidebarLinks = function(baseUlID, headerLinkClass, maxDepth) {
     // Set Defaults
     this.baseUlID           = (typeof baseUlID !== 'undefined') ?  baseUlID : 'sidebar-links';
-    this.headerLinkClass    = (typeof headerLinkClass !== 'undefined') ?  headerLinkClass : 'sidebar-link';
+    this.headerLinkClass    = (typeof headerLinkClass !== 'undefined') ?  headerLinkClass : null;
     this.maxDepth           = (typeof maxDepth === 'number' && maxDepth > 1 && maxDepth <= 6) ? maxDepth : 6;
 
     this.init = function() {
+
+        if(this.headerLinkClass === null) {
+            this.headerLinkClass = 'sidebar-link';
+            for(var i = 1; i < (this.maxDepth + 1); i++){
+                var els = document.getElementsByTagName('h'+i);
+                for(var id in els) {
+                    if(els[id].className === '')    { els[id].className         = this.headerLinkClass; }
+                    else                            { els[id].className  += ' ' + this.headerLinkClass; }
+                }
+            }
+        }
+
         var regex = new RegExp('[H|h][1-' + this.maxDepth + ']', 'g');
         var linksUl = document.getElementById(this.baseUlID);
         var headers = document.getElementsByClassName(this.headerLinkClass);
@@ -16,7 +28,7 @@ var sidebarLinks = function(baseUlID, headerLinkClass, maxDepth) {
         // Loop through all page header elements
         for(var i = 0; i < headers.length; i++) {
             // Create the new li element
-            var newLi = this.createListItem(headers[i]);
+            var newLi = this.createListItem(headers[i], i);
 
             // Get the current indent/header level (and make sure it's a H1 - H{deepest} element)
             var curLevel = parseInt( headers[i].tagName.match(regex)[0].slice(-1) );
@@ -59,11 +71,17 @@ var sidebarLinks = function(baseUlID, headerLinkClass, maxDepth) {
      * @param headerItem
      * @returns {Element}
      */
-    this.createListItem = function(headerItem) {
+    this.createListItem = function(headerItem, headerIndex) {
         var newLi = document.createElement('li');
         var link = document.createElement('a');
 
         link.innerHTML = headerItem.innerText;
+
+        // Add an ID to the header if it doesn't have one
+        if(headerItem.id === "") {
+            headerItem.id = 'header-' + headerIndex.toString().padStart(3, "0");
+        }
+
         link.href = '#' + headerItem.id;
 
         newLi.appendChild(link);
